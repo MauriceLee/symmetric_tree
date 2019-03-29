@@ -1,25 +1,28 @@
 import math
 
-binary_tree = [1, 2, 2, 3, 4, 4, 3]
+def isSymmetric(root):
+    lens = len(root)
+    n = 0
+    while lens > 0:
+        binary = math.pow(2, n)
+        lens = lens - binary
+        count = binary / 2
+        x = int(binary - 1)
+        y = 2 * x
+        while count >= 1:
+            if root[x] != root[y]:
+                return False
+            else:
+                x += 1
+                y -= 1
+            count -= 1
+        n += 1
+    return True
 
-lens = len(binary_tree)
-n = 0
+def main():
+    root = [1, 2, 2, 3, 4, 4, 3]
+    result = isSymmetric(root)
+    print(result)
 
-while lens > 0:
-    binary = math.pow(2, n)
-    lens = lens - binary
-    count = binary / 2
-    print(count)
-    x = int(binary - 1)
-    y = 2 * x
-    
-    while count >= 1:
-        if binary_tree[x] != binary_tree[y]:
-            print(False)
-        else:
-            x += 1
-            y -= 1
-            print(True)
-        count -= 1
-            
-    n += 1
+if __name__ == '__main__':
+    main()
